@@ -1,0 +1,23 @@
+server {
+    listen NGX_PORT;
+
+    location / {
+        proxy_pass https://mursor.ottiptv.cc;
+        proxy_set_header User-Agent NGX_UA;
+        proxy_set_header Host mursor.ottiptv.cc;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_server_name on;
+    }
+
+    location = /tv.m3u {
+        proxy_pass https://sub.ottiptv.cc/iptv.m3u;
+        proxy_set_header User-Agent NGX_UA;
+        proxy_set_header Host sub.ottiptv.cc;
+        proxy_set_header Accept-Encoding "";
+        proxy_ssl_server_name on;
+        subs_filter_types text/plain;
+        subs_filter 'https://mursor.ottiptv.cc' 'http://NGX_ADDR:NGX_PORT';
+    }
+}
