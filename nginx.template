@@ -1,7 +1,7 @@
 server {
     listen NGX_PORT;
 
-    location /migu/ {
+    location /mg/ {
         proxy_pass https://mgtv.ottiptv.cc;
         proxy_set_header User-Agent NGX_UA;
         proxy_set_header Host mgtv.ottiptv.cc;
