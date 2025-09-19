@@ -12,9 +12,9 @@ server {
     }
 
     location / {
-        proxy_pass https://mursor.ottiptv.cc;
+        proxy_pass https://live.ottiptv.cc;
         proxy_set_header User-Agent NGX_UA;
-        proxy_set_header Host mursor.ottiptv.cc;
+        proxy_set_header Host live.ottiptv.cc;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -27,7 +27,7 @@ server {
         proxy_hide_header Content-Disposition;
         add_header Content-Type "text/plain; charset=utf-8";
         proxy_set_header User-Agent NGX_UA;
-        proxy_set_header Host mursor.ottiptv.cc;
+        proxy_set_header Host live.ottiptv.cc;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -39,6 +39,6 @@ server {
         proxy_pass http://localhost:NGX_PORT/raw.m3u;
         subs_filter_types text/plain;
         subs_filter 'https://mgtv.ottiptv.cc' 'http://NGX_ADDR:NGX_PORT';
-        subs_filter 'https://mursor.ottiptv.cc' 'http://NGX_ADDR:NGX_PORT';
+        subs_filter 'https://live.ottiptv.cc' 'http://NGX_ADDR:NGX_PORT';
     }
 }
